@@ -1,4 +1,4 @@
-# app.py.(Home + Navbar)
+# app.py (Home + Navbar)
 import nltk
 
 # download minimal data quietly if not present
@@ -12,11 +12,8 @@ try:
 except LookupError:
     nltk.download("stopwords", quiet=True)
 
-
-
 import streamlit as st
 from PIL import Image
-
 
 # ------------------ Page Config ------------------
 st.set_page_config(
@@ -28,8 +25,16 @@ st.set_page_config(
 # ------------------ Custom CSS ------------------
 st.markdown("""
 <style>
+
 .stApp {
     background: linear-gradient(135deg, #e9f0ff 0%, #ffffff 100%);
+}
+
+/* Force text visibility in DARK MODE */
+.header h1,
+.header p,
+.navbar a {
+    color: #1a1a1a !important;
 }
 
 /* Header */
@@ -54,14 +59,13 @@ st.markdown("""
     font-weight: 600;
     font-size: 17px;
     text-decoration: none;
-    color: #2a2a2a;
 }
 .navbar a:hover {
-    color: #4a77ff;
+    color: #4a77ff !important;
 }
+
 </style>
 """, unsafe_allow_html=True)
-
 
 # ------------------ Header ------------------
 st.markdown("""
@@ -71,23 +75,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-
-# ------------------ Navbar (Links to Streamlit Pages) ------------------
-st.markdown("""
-<style>
-.nav-item {
-    font-size: 18px;
-    font-weight: 600;
-    padding: 8px 16px;
-    display: inline-block;
-    cursor: pointer;
-}
-.nav-item:hover {
-    color: #4a77ff;
-}
-</style>
-""", unsafe_allow_html=True)
-
+# ------------------ Navbar Buttons ------------------
 cols = st.columns(4)
 
 with cols[0]:
@@ -110,19 +98,13 @@ with cols[3]:
 # ------------------ Homepage Image ------------------
 try:
     image = Image.open("frontend/Homepage.png")
-
     col1, col2, col3 = st.columns([1, 3, 1])
-    with col2:
-        st.image(image, width="stretch")
 
-except Exception as e:
+    with col2:
+        st.image(image, use_container_width=True)
+  # FIXED
+
+except:
     st.warning("⚠ Homepage image not found. Add it in: `frontend/Homepage.png`")
 
 
-# ------------------ Upload Section ------------------
-st.markdown("### 📂 Upload your  Chat (.txt)")
-
-uploaded_file = st.file_uploader("Choose a export text file", type=["txt"])
-
-if uploaded_file is not None:
-    st.success("✅ File uploaded successfully! Go to **Analysis** page ➡")
