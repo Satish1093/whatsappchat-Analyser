@@ -1,7 +1,12 @@
 streamlit
 pandas
+numpy
 matplotlib
 seaborn
-urlextract
 wordcloud
 emoji
+urlextract
+fpdf2
+nltk
+textblob
+python-dateutil
