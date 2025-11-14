@@ -109,14 +109,14 @@ with cols[3]:
 
 # ------------------ Homepage Image ------------------
 try:
-    image = Image.open("frontend/homepage.png")
+    image = Image.open("frontend/Homepage.png")
 
     col1, col2, col3 = st.columns([1, 3, 1])
     with col2:
         st.image(image, width="stretch")
 
 except Exception as e:
-    st.warning("⚠ Homepage image not found. Add it in: `frontend/homepage.png`")
+    st.warning("⚠ Homepage image not found. Add it in: `frontend/Homepage.png`")
 
 
 # ------------------ Upload Section ------------------
